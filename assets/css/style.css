@@ -1,0 +1,20 @@
+.content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+.box {
+    border: black 1px solid;
+    text-align: center;
+    padding: 3%;
+}
+
+.box-show {
+    display: none;
+}
+.shortDescription {
+    margin-bottom: 4%;
+}
+
+button {
+}
