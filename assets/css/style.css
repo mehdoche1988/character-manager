@@ -50,3 +50,7 @@ button {
   border: 1px solid white;
   outline: none;
 }
+
+.ID{
+  display: none;
+}
