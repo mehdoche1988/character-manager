@@ -117,29 +117,168 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"assets/js/script.js":[function(require,module,exports) {
-(function () {
-  var name = document.querySelector('#nameRecup');
-  var desc = document.querySelector('#desc');
-  var shortDescriptionRecup = document.querySelector('#shortDescriptionRecup');
-  var imageRecup = document.querySelector('#imageRecup');
+})({"assets/js/main.js":[function(require,module,exports) {
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-  function createCharcters() {
-    // let name = ;
-    // let desc = ;
-    // let shortDescriptionRecup =;
-    // let imageRecup =;
-    var Carts = {
-      name: name.value,
-      description: desc.value,
-      shortDescription: shortDescriptionRecup.value,
-      image: imageRecup.value
-    };
-    console.log(Carts);
-  }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-  createCharcters();
-})();
+var boxs = document.getElementById("");
+var modal = document.querySelector(".content-show");
+var deletBtns = document.querySelectorAll("#delete");
+
+var fetchData = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return fetch("https://character-database.becode.xyz/characters");
+
+          case 2:
+            _context.next = 4;
+            return _context.sent.json();
+
+          case 4:
+            return _context.abrupt("return", _context.sent);
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function fetchData() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var fetchDataById = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(id) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return fetch("https://character-database.becode.xyz/characters/" + id);
+
+          case 2:
+            _context2.next = 4;
+            return _context2.sent.json();
+
+          case 4:
+            return _context2.abrupt("return", _context2.sent);
+
+          case 5:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function fetchDataById(_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+function getCharacters() {
+  return _getCharacters.apply(this, arguments);
+}
+
+function _getCharacters() {
+  _getCharacters = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+    var outPut;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            outPut = "";
+            _context3.next = 3;
+            return fetchData().then(function (data) {
+              data.forEach(function (ele) {
+                outPut += "\n            <div class=\"box\" id=".concat(ele.id, ">\n            <div class=\"image-contener\">\n              <img src=data:image/JPEG;base64,").concat(ele.image, " alt=\"test image\" />\n            </div>\n            <div class=\"name\">\n              <h6>").concat(ele.name, "</h6>\n            </div>\n            <div class=\"shortDescription\">\n               ").concat(ele.shortDescription, "\n            </div>\n            <div class=\"btns\">\n              <button class=\"button\" id=\"show\">Show</button>\n              <button class=\"button\" id=\"edit\">Edit</button>\n              <button class=\"button\" id=\"delete\">Delete</button>\n            </div>\n          </div>");
+              });
+              document.querySelector(".content").innerHTML = outPut;
+            });
+
+          case 3:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+  return _getCharacters.apply(this, arguments);
+}
+
+getCharacters();
+
+function getInfoCharcters() {
+  return _getInfoCharcters.apply(this, arguments);
+}
+
+function _getInfoCharcters() {
+  _getInfoCharcters = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+    var boxs;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.next = 2;
+            return getCharacters();
+
+          case 2:
+            boxs = document.querySelectorAll("#show");
+            boxs.forEach(function (box) {
+              box.addEventListener("click", /*#__PURE__*/function () {
+                var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(e) {
+                  var id, character, outPut;
+                  return regeneratorRuntime.wrap(function _callee4$(_context4) {
+                    while (1) {
+                      switch (_context4.prev = _context4.next) {
+                        case 0:
+                          id = e.target.parentElement.parentElement.id;
+                          _context4.next = 3;
+                          return fetchDataById(id);
+
+                        case 3:
+                          character = _context4.sent;
+                          outPut = "";
+                          outPut += "\n        <div class=\"box-show\">\n        <button class=\"button close\" id=\"back\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button>\n        <div class=\"image-contener\">\n          <img src=\"data:image/JPEG;base64,".concat(character.image, "\" />\n        </div>\n\n        <div class=\"name\">").concat(character.name, "</div>\n        <div class=\"description\">\n          ").concat(character.description, "\n        </div>\n        <div>\n          <button class=\"button\" id=\"Edit\">edit</button>\n          <button class=\"button\" id=\"Delete\">delete</button>\n        </div>\n      </div>  ");
+                          modal.innerHTML = outPut;
+                          modal.classList.add("open");
+                          document.getElementById("back").addEventListener("click", function () {
+                            modal.classList.remove("open");
+                          });
+
+                        case 9:
+                        case "end":
+                          return _context4.stop();
+                      }
+                    }
+                  }, _callee4);
+                }));
+
+                return function (_x2) {
+                  return _ref3.apply(this, arguments);
+                };
+              }());
+            });
+
+          case 4:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+  return _getInfoCharcters.apply(this, arguments);
+}
+
+getInfoCharcters();
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -344,5 +483,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","assets/js/script.js"], null)
-//# sourceMappingURL=/script.c10090b4.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","assets/js/main.js"], null)
+//# sourceMappingURL=/main.cea5deef.js.map

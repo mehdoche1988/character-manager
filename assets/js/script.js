@@ -1,43 +1,26 @@
 (() => {
-//Fonction show  tout les carateres
+    let name = document.querySelector('#nameRecup');
+    let desc = document.querySelector('#desc');
+    let shortDescriptionRecup = document.querySelector('#shortDescriptionRecup');
+    let imageRecup = document.querySelector('#imageRecup');
 
-document.querySelector("#run").addEventListener("click", () => {
+    function createCharcters() {
 
-    fetch('https://character-database.becode.xyz/characters')
-        .then((data)=>data.json())
-        .then((res)=>{console.table(res)})
-});
+        // let name = ;
+        // let desc = ;
+        // let shortDescriptionRecup =;
+        // let imageRecup =;
 
-// // au clique fonction delete
-//     document.querySelector("#delete").addEventListener("click", () => {
-//         charactersId = document.querySelector("#ID").value;
-//         deleteCharacters(charactersId);
-//     });
-// au clique fonction show
-    // document.querySelector("#run").addEventListener("click", () => {
+        let Carts = {
+            name: name.value,
+            description: desc.value,
+            shortDescription: shortDescriptionRecup.value,
+            image: imageRecup.value
+        }
+        console.log(Carts);
+    }
 
-    //     showCaracters();
-
-    // })
-
-// // -fonction delete
-//     const deleteCharacters = id => {
-//         const charactersObject = JSON.stringify({
-//             id: id
-//         });
-
-//         let url = "characters" + charactersId;
-//         fetch(url, {
-//             method: "DELETE",
-//             headers: new Headers({
-//                 "content-type": "application/json"
-//             })
-//         })
-//             .then(response => response.json())
-//             .then(data => console.log(data))
-//             .catch(err => console.error(err));
-//         console.log(charactersId);
-//     };
+    createCharcters();
 
 })();
 
