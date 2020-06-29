@@ -5,7 +5,7 @@ document.querySelector("#run").addEventListener("click", () => {
 
     fetch('https://character-database.becode.xyz/characters')
         .then((data)=>data.json())
-        .then((res)=>{console.log(res)})
+        .then((res)=>{console.table(res)})
 });
 
 // // au clique fonction delete
