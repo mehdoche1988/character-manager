@@ -118,28 +118,45 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"assets/js/script.js":[function(require,module,exports) {
-(function () {
-  var name = document.querySelector('#nameRecup');
-  var desc = document.querySelector('#desc');
-  var shortDescriptionRecup = document.querySelector('#shortDescriptionRecup');
-  var imageRecup = document.querySelector('#imageRecup');
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-  function createCharcters() {
-    // let name = ;
-    // let desc = ;
-    // let shortDescriptionRecup =;
-    // let imageRecup =;
-    var Carts = {
-      name: name.value,
-      description: desc.value,
-      shortDescription: shortDescriptionRecup.value,
-      image: imageRecup.value
-    };
-    console.log(Carts);
-  }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-  createCharcters();
-})();
+document.getElementById("submit").addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+  var name, desc, shortDescriptionRecup, imageRecup, Carts;
+  return regeneratorRuntime.wrap(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          name = document.querySelector('#nameRecup');
+          desc = document.querySelector('#desc');
+          shortDescriptionRecup = document.querySelector('#shortDescriptionRecup');
+          imageRecup = document.querySelector('#imageRecup');
+          Carts = {
+            name: name.value,
+            description: desc.value,
+            shortDescription: shortDescriptionRecup.value,
+            image: imageRecup.value
+          };
+          _context.next = 7;
+          return fetch("https://character-database.becode.xyz/characters", {
+            method: "POST",
+            body: JSON.stringify(Carts),
+            headers: new Headers({
+              "Content-Type": "application/json"
+            })
+          });
+
+        case 7:
+          console.log("fonctionne");
+
+        case 8:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, _callee);
+})));
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
