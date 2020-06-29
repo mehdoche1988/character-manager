@@ -2,10 +2,8 @@ let boxs = document.getElementById("");
 let modal = document.querySelector(".content-show");
 let deletBtns = document.querySelectorAll("#delete");
 
-
-
-let fetchData = async () => await (await fetch("https://character-database.becode.xyz/characters")).json();
-let fetchDataById = async (id) => await (await fetch("https://character-database.becode.xyz/characters/" + id)).json();
+let fetchData = async () =>await (await fetch("https://character-database.becode.xyz/characters") ).json();
+let fetchDataById = async (id) =>await (await fetch("https://character-database.becode.xyz/characters/" + id)).json();
 
 async function getCharacters() {
   let outPut = "";
@@ -32,21 +30,15 @@ async function getCharacters() {
     document.querySelector(".content").innerHTML = outPut;
     deleteElement()
   });
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> edc72991685595d8cb755f4473958f2d8a1562da
 }
 
 
 getCharacters();
 
 async function getInfoCharcters() {
-  await getCharacters();
-  let boxs = document.querySelectorAll("#show");
-  boxs.forEach((box) => {
+    await getCharacters();
+    let boxs = document.querySelectorAll("#show");
+    boxs.forEach((box) => {
     box.addEventListener("click", async (e) => {
       let id = e.target.parentElement.parentElement.id;
       let character = await fetchDataById(id);
@@ -76,10 +68,9 @@ async function getInfoCharcters() {
     });
   });
 
-
+ 
 }
 getInfoCharcters();
-
 
 async function deleteElement() {
   let btnDeletes = document.querySelectorAll("#delete");
@@ -98,5 +89,8 @@ async function deleteElement() {
           getCharacters();
         });
     });
+  });
+  document.querySelector(".closeDeleteModal").addEventListener("click", () => {
+    document.querySelector(".modalDelete").classList.remove("open");
   });
 }
