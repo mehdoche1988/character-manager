@@ -138,7 +138,8 @@ document.getElementById("submit").addEventListener("click", /*#__PURE__*/_asyncT
             shortDescription: shortDescriptionRecup.value,
             image: imageRecup.value
           };
-          _context.next = 7;
+          console.log(Carts);
+          _context.next = 8;
           return fetch("https://character-database.becode.xyz/characters", {
             method: "POST",
             body: JSON.stringify(Carts),
@@ -147,10 +148,10 @@ document.getElementById("submit").addEventListener("click", /*#__PURE__*/_asyncT
             })
           });
 
-        case 7:
-          console.log("fonctionne");
-
         case 8:
+          console.log("je suis un test");
+
+        case 9:
         case "end":
           return _context.stop();
       }
@@ -185,7 +186,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45357" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36211" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

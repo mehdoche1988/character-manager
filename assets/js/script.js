@@ -11,8 +11,11 @@ document.getElementById("submit").addEventListener("click", async () => {
         shortDescription: shortDescriptionRecup.value,
         image: imageRecup.value
     }
+    console.log(Carts);
 
-    await fetch("https://character-database.becode.xyz/characters", {
+    await fetch("https://character-database.becode.xyz/characters", 
+    {
+        
         method: "POST",
         body: JSON.stringify(Carts),
         headers: new Headers({
@@ -20,7 +23,8 @@ document.getElementById("submit").addEventListener("click", async () => {
         })
     });
 
-    console.log("fonctionne")
+    console.log("je suis un test");
+
 });
 
 
