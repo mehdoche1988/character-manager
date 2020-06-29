@@ -3,84 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+      integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>character-manager</title>
   </head>
-
   <body>
-    <div class="content">
-      <div class="box">
-        <div class="image-contener">
-          <img src="http://placehold.it/100/100" alt="test image" />
-        </div>
-        <div class="name">
-          <h1>TestMan</h1>
-        </div>
-        <div class="shortDescription">
-          Lorem ipsum dolor sit amet uconsectetur adipisicing elit. Cum eos
-          dicta dolor ea rem?
-        </div>
-        <div>
-          <button class="button" id="show">show</button>
-          <button class="button" id="edit">edit</button>
-          <button class="button" id="delete">delete</button>
-        </div>
-      </div>
-      <div class="box">
-        <div class="image-contener">
-          <img src="http://placehold.it/100/100" alt="test image" />
-        </div>
-        <div class="name">
-          <h1>TestMan</h1>
-        </div>
-        <div class="shortDescription">
-          Lorem ipsum dolor sit amet uconsectetur adipisicing elit. Cum eos
-          dicta dolor ea rem?
-        </div>
-        <div>
-          <button class="button" id="show">show</button>
-          <button class="button" id="edit">edit</button>
-          <button class="button" id="delete">delete</button>
-        </div>
-      </div>
-      <div class="box">
-        <div class="image-contener">
-          <img src="http://placehold.it/100/100" alt="test image" />
-        </div>
-        <div class="name">
-          <h1>TestMan</h1>
-        </div>
-        <div class="shortDescription">
-          Lorem ipsum dolor sit amet uconsectetur adipisicing elit. Cum eos
-          dicta dolor ea rem?
-        </div>
-        <div>
-          <button class="button" id="show">show</button>
-          <button class="button" id="edit">edit</button>
-          <button class="button" id="delete">delete</button>
-        </div>
+    <div class="container">
+      <div class="content"></div>
+      <div class="content-show"></div>
+      <div class="modalDelete">
+        <button class="closeDeleteModal">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+        <p>Are you sure you want to delete this itme ?</p>
+        <button id="btnDelModal">OK</button>
       </div>
     </div>
-
-    <div class="content-show">
-      <div class="box-show">
-        <button class="button" id="back">back</button>
-        <div class="image-contener">
-          <img src="http://placehold.it/400/400" />
-        </div>
-
-        <div class="name"></div>
-        <div class="description">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde dolorum
-          at, culpa odio adipisci, similique cum ullam iste provident quibusdam
-          ducimus architecto aut porro, blanditiis optio aliquid voluptas sint
-          laborum!
-        </div>
-        <div>
-          <button class="button" id="edit">edit</button>
-          <button class="button" id="delete">delete</button>
-        </div>
-      </div>
-    </div>
+    <script src="./assets/js/main.js"></script>
   </body>
 </html>

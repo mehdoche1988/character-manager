@@ -1,15 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   position: relative;
+  background-color: #ffefea;
+  font-family: "Lato", sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
 }
 .content {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
+  padding: 30px 0;
 }
 .box {
-  border: black 1px solid;
+  border: 1px solid #ccc;
   text-align: center;
-  padding: 3%;
+  box-shadow: 0 0 4px 1px darksalmon;
+  padding-top: 5px;
 }
 
 .content-show {
@@ -26,6 +44,13 @@ body {
   justify-content: center;
   align-items: center;
   display: none;
+  opacity: 0;
+  animation: fadeInFromNone 0.3s ease-out;
+}
+
+.content-show.open {
+  display: flex;
+  opacity: 1;
 }
 
 .box-show {
@@ -35,18 +60,73 @@ body {
   flex-direction: column;
   background-color: white;
   padding: 20px 10px;
-  width: 80%;
+  width: 40%;
+  position: relative;
+  box-shadow: 0 0 4px 1px darksalmon;
 }
 .shortDescription {
   margin-bottom: 4%;
 }
 
+.btns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: darksalmon;
+}
+
+.close {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+
 button {
   cursor: pointer;
   padding: 5px 15px;
-  background-color: #444;
+  background-color: darksalmon;
   color: white;
-  border-radius: 10px;
   border: 1px solid white;
   outline: none;
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.modalDelete {
+  background-color: #fff;
+  padding: 50px;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  text-align: center;
+  animation: fadeInFromNone 0.7s ease-out;
+  display: none;
+  opacity: 0;
+  box-shadow: 0 0 4px 1px darksalmon;
+}
+
+.closeDeleteModal {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.modalDelete.open {
+  display: block;
+  opacity: 1;
+}
+
+.modalDelete p {
+  padding: 10px;
 }
