@@ -28,11 +28,11 @@ async function getCharacters() {
           </div>`;
     });
     document.querySelector(".content").innerHTML = outPut;
+    deleteElement()
   });
 
- 
- 
 }
+
 
 getCharacters();
 
@@ -74,3 +74,22 @@ async function getInfoCharcters() {
 getInfoCharcters();
 
 
+async function deleteElement() {
+  let btnDeletes = document.querySelectorAll("#delete");
+  btnDeletes.forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      document.querySelector(".modalDelete").classList.add("open");
+      document
+        .querySelector("#btnDelModal")
+        .addEventListener("click", async () => {
+          document.querySelector(".modalDelete").classList.remove("open");
+          await fetch("https://character-database.becode.xyz/characters/"+e.target.parentElement.parentElement.id,
+            {
+              method: "DELETE",
+            }
+          );
+          getCharacters();
+        });
+    });
+  });
+}
