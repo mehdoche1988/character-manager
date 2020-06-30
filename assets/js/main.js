@@ -34,8 +34,8 @@ async function getCharacters() {
     });
     document.querySelector(".content").innerHTML = outPut;
     deleteElement()
- 
-    
+
+
   });
 
 }
@@ -106,21 +106,22 @@ async function deleteElement() {
 async function editCharcters() {
   await getCharacters();
   await getInfoCharcters();
-  let idChar ;
+  let idChar;
   let resutEdit = document.querySelectorAll('#edit');
   resutEdit.forEach(ele => {
-    ele.addEventListener('click', async(e) => {
-     idChar =e.target.parentElement.parentElement.id;
-     let charachter = await fetchDataById(idChar)
-     nameEdit.value = charachter.name;
-     descEdit.value = charachter.description;
-     shortDescEdit.value = charachter.shortDescription;
-     updateCharById(idChar)
-     console.log(idChar)
-     
+    ele.addEventListener('click', async (e) => {
+      document.querySelector(".content-edit").classList.add("open")
+      idChar = e.target.parentElement.parentElement.id;
+      let charachter = await fetchDataById(idChar)
+      nameEdit.value = charachter.name;
+      descEdit.value = charachter.description;
+      shortDescEdit.value = charachter.shortDescription;
+      updateCharById(idChar)
+      console.log(idChar)
+
     })
-  
-  
+
+
   })
 }
 
@@ -146,30 +147,35 @@ completed: false
 
 )*/
 
-async function updateCharById(idCahr){
+async function updateCharById(idCahr) {
   let imgurl;
-  document.getElementById("form-edit").addEventListener("submit" , async (e)=>{
+  document.getElementById("form-edit").addEventListener("submit", async (e) => {
     e.preventDefault()
 
-   await fetchDataById(idCahr).then((data)=>{
-       imgurl = data.image
+    await fetchDataById(idCahr).then((data) => {
+      imgurl = data.image
     })
 
 
-    await fetch("https://character-database.becode.xyz/characters/"+idCahr , {
+    await fetch("https://character-database.becode.xyz/characters/" + idCahr, {
       method: "PUT",
-      image : imgurl,
+      image: imgurl,
       body: JSON.stringify({
-      name: nameEdit.value,
-      description: descEdit.value,
-      shortDescription: shortDescEdit.value
-    
-    }),
+        name: nameEdit.value,
+        description: descEdit.value,
+        shortDescription: shortDescEdit.value
 
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
+      }),
+
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
       }
+    })
   })
- })
- 
+
 }
+
+document.querySelector("#close-btn-edit").addEventListener("click", () => {
+
+  document.querySelector(".content-edit").classList.remove("open")
+})
