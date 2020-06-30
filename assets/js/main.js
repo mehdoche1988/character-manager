@@ -151,7 +151,7 @@ async function updateCharById(idCahr) {
   let imgurl;
   document.getElementById("form-edit").addEventListener("submit", async (e) => {
     e.preventDefault()
-
+    document.querySelector(".content-edit").classList.remove("open")
     await fetchDataById(idCahr).then((data) => {
       imgurl = data.image
     })
