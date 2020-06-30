@@ -1,6 +1,9 @@
 let boxs = document.getElementById("");
 let modal = document.querySelector(".content-show");
 let deletBtns = document.querySelectorAll("#delete");
+let nameUpdate  =document.getElementById("nameRecupUpdate")
+let descUpdate  =document.getElementById("descUpdate")
+/*let shortDescUpdate =document.getElementById("shortDescriptionRecupUpdate")*/
 
 let fetchData = async () =>await (await fetch("https://character-database.becode.xyz/characters") ).json();
 let fetchDataById = async (id) =>await (await fetch("https://character-database.becode.xyz/characters/" + id)).json();
@@ -22,13 +25,14 @@ async function getCharacters() {
             </div>
             <div class="btns">
               <button class="button" id="show">Show</button>
-              <button class="button" id="edit">Edit</button>
+              <button class="button" id="edit">Edit</></button>
               <button class="button" id="delete">Delete</button>
             </div>
           </div>`;
     });
     document.querySelector(".content").innerHTML = outPut;
     deleteElement()
+    
   });
 }
 
@@ -36,7 +40,7 @@ async function getCharacters() {
 getCharacters();
 
 async function getInfoCharcters() {
-    await getCharacters();
+    await getCharacters(); //
     let boxs = document.querySelectorAll("#show");
     boxs.forEach((box) => {
     box.addEventListener("click", async (e) => {
@@ -94,3 +98,5 @@ async function deleteElement() {
     document.querySelector(".modalDelete").classList.remove("open");
   });
 }
+
+

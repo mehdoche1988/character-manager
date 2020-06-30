@@ -19,7 +19,7 @@ body {
 }
 .content {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3 ,1fr);
   grid-gap: 10px;
   padding: 30px 0;
 }
@@ -28,6 +28,10 @@ body {
   text-align: center;
   box-shadow: 0 0 4px 1px darksalmon;
   padding-top: 5px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .content-show {
@@ -68,10 +72,13 @@ body {
   margin-bottom: 4%;
 }
 
+
 .btns {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3 , 1fr);
   background-color: darksalmon;
+  
+ 
 }
 
 .close {
