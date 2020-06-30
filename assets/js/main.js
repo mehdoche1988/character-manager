@@ -2,7 +2,9 @@ let boxs = document.getElementById("");
 let modal = document.querySelector(".content-show");
 let deletBtns = document.querySelectorAll("#delete");
 
-let nameEdit = document.querySelector("name-edit");
+let nameEdit = document.querySelector("#name-edit");
+let descEdit = document.querySelector("#desc-edit");
+let shortDescEdit = document.querySelector("#shortDescription-edit");
 
 
 let fetchData = async () => await (await fetch("https://character-database.becode.xyz/characters")).json();
@@ -32,24 +34,14 @@ async function getCharacters() {
     });
     document.querySelector(".content").innerHTML = outPut;
     deleteElement()
+ 
     
   });
+
 }
 getCharacters();
 
-async function editCharcters() {
-  await getCharacters();
-  await getInfoCharcters();
-  let resutEdit = document.querySelectorAll('#edit');
-  resutEdit.forEach(ele => {
-    ele.addEventListener('click', () => {
-      console.log("esseye de fonctionner")
-    })
-  })
-}
 
-
-editCharcters();
 
 async function getInfoCharcters() {
 
@@ -110,3 +102,74 @@ async function deleteElement() {
 
 
 
+
+async function editCharcters() {
+  await getCharacters();
+  await getInfoCharcters();
+  let idChar ;
+  let resutEdit = document.querySelectorAll('#edit');
+  resutEdit.forEach(ele => {
+    ele.addEventListener('click', async(e) => {
+     idChar =e.target.parentElement.parentElement.id;
+     let charachter = await fetchDataById(idChar)
+     nameEdit.value = charachter.name;
+     descEdit.value = charachter.description;
+     shortDescEdit.value = charachter.shortDescription;
+     updateCharById(idChar)
+     console.log(idChar)
+     
+    })
+  
+  
+  })
+}
+
+
+
+
+editCharcters();
+
+
+
+
+
+// PUT to the resource with id = 5 to change the name of task
+/*fetch("https://jsonplaceholder.typicode.com/todos/5",
+method: "PUT",
+body: JSON.stringify({
+userId: 1,
+id: 5,
+title: "test",
+completed: false
+})
+
+
+)*/
+
+async function updateCharById(idCahr){
+  let imgurl;
+  document.getElementById("form-edit").addEventListener("submit" , async (e)=>{
+    e.preventDefault()
+
+   await fetchDataById(idCahr).then((data)=>{
+       imgurl = data.image
+    })
+
+
+    await fetch("https://character-database.becode.xyz/characters/"+idCahr , {
+      method: "PUT",
+      image : imgurl,
+      body: JSON.stringify({
+      name: nameEdit.value,
+      description: descEdit.value,
+      shortDescription: shortDescEdit.value
+    
+    }),
+
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+      }
+  })
+ })
+ 
+}

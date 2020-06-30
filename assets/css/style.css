@@ -111,7 +111,7 @@ button {
 .modalDelete {
   background-color: #fff;
   padding: 50px;
-  position: absolute;
+  position: fixed;
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
@@ -144,7 +144,10 @@ a {
   text-decoration: none;
 }
 
-#content-edit{
 
-  background-color: chocolate;
+
+#form-edit{
+  background-color: #ccc;
+  padding: 10px 30px;
+ 
 }
