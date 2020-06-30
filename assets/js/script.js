@@ -25,11 +25,4 @@ document.getElementById("form").addEventListener("submit", (e) => {
             }),
         }
     );
-
-<<<<<<< HEAD
-
-
-
-=======
 });
->>>>>>> 1eef570d31663f4c36b13ed04543f15a678496ab
