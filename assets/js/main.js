@@ -1,9 +1,10 @@
 let boxs = document.getElementById("");
 let modal = document.querySelector(".content-show");
 let deletBtns = document.querySelectorAll("#delete");
+let nameEdit = document.querySelector("name-edit");
 
-let fetchData = async () =>await (await fetch("https://character-database.becode.xyz/characters") ).json();
-let fetchDataById = async (id) =>await (await fetch("https://character-database.becode.xyz/characters/" + id)).json();
+let fetchData = async () => await (await fetch("https://character-database.becode.xyz/characters")).json();
+let fetchDataById = async (id) => await (await fetch("https://character-database.becode.xyz/characters/" + id)).json();
 
 async function getCharacters() {
   let outPut = "";
@@ -31,14 +32,26 @@ async function getCharacters() {
     deleteElement()
   });
 }
-
-
 getCharacters();
 
+async function editCharcters() {
+  await getCharacters();
+  await getInfoCharcters();
+  let resutEdit = document.querySelectorAll('#edit');
+  resutEdit.forEach(ele => {
+    ele.addEventListener('click', () => {
+      console.log("esseye de fonctionner")
+    })
+  })
+}
+
+
+editCharcters();
+
 async function getInfoCharcters() {
-    await getCharacters();
-    let boxs = document.querySelectorAll("#show");
-    boxs.forEach((box) => {
+  await getCharacters();
+  let boxs = document.querySelectorAll("#show");
+  boxs.forEach((box) => {
     box.addEventListener("click", async (e) => {
       let id = e.target.parentElement.parentElement.id;
       let character = await fetchDataById(id);
@@ -48,15 +61,11 @@ async function getInfoCharcters() {
         <div class="box-show">
         <button class="button close" id="back"><i class="fa fa-times" aria-hidden="true"></i></button>
         <div class="image-contener">
-          <img src="data:image/JPEG;base64,${character.image}" />
+          <img src="data:image/JPEG;base64,${character.image}" id="imageSherch"/>
         </div>
         <div class="name">${character.name}</div>
         <div class="description">
           ${character.description}
-        </div>
-        <div>
-          <button class="button" id="Edit">edit</button>
-          <button class="button" id="Delete">delete</button>
         </div>
       </div>  `;
       modal.innerHTML = outPut;
@@ -67,7 +76,7 @@ async function getInfoCharcters() {
     });
   });
 
- 
+
 }
 getInfoCharcters();
 
@@ -80,7 +89,7 @@ async function deleteElement() {
         .querySelector("#btnDelModal")
         .addEventListener("click", async () => {
           document.querySelector(".modalDelete").classList.remove("open");
-          await fetch("https://character-database.becode.xyz/characters/"+e.target.parentElement.parentElement.id,
+          await fetch("https://character-database.becode.xyz/characters/" + e.target.parentElement.parentElement.id,
             {
               method: "DELETE",
             }
@@ -93,3 +102,4 @@ async function deleteElement() {
     document.querySelector(".modalDelete").classList.remove("open");
   });
 }
+
