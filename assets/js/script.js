@@ -6,6 +6,7 @@ let shortDescriptionRecup = document.querySelector('#shortDescriptionRecup');
 document.getElementById("form").addEventListener("submit", (e) => {
 
     e.preventDefault()
+<<<<<<< HEAD
  console.log("test")
   
  fetch(
@@ -39,3 +40,24 @@ document.getElementById("form").addEventListener("submit", (e) => {
 
 
 
+=======
+    console.log("test")
+
+    fetch(
+        "https://character-database.becode.xyz/characters",
+        {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                images: images.value,
+                name: name.value,
+                description: desc.value,
+                shortDescription: shortDescriptionRecup.value,
+            }),
+        }
+    );
+});
+>>>>>>> 20127127703125177400215c242c167c78cc1836
