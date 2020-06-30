@@ -12,6 +12,13 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+.title {
+  text-align: center;
+  font-size: 40px;
+  text-shadow: 2px 2px 8px #444;
+  color: darksalmon;
+}
+
 .container {
   margin: 0 auto;
   width: 90%;
@@ -19,7 +26,7 @@ body {
 }
 .content {
   display: grid;
-  grid-template-columns: repeat(3 ,1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   padding: 30px 0;
 }
@@ -72,13 +79,9 @@ body {
   margin-bottom: 4%;
 }
 
-
 .btns {
   display: grid;
-  grid-template-columns: repeat(3 , 1fr);
-  background-color: darksalmon;
-  
- 
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .close {
@@ -94,6 +97,13 @@ button {
   color: white;
   border: 1px solid white;
   outline: none;
+  transition: all 0.5s ease-in-out;
+}
+
+button:hover {
+  background-color: #444;
+  color: white;
+  transform: translateY(-3px);
 }
 
 @keyframes fadeInFromNone {
@@ -144,10 +154,37 @@ a {
   text-decoration: none;
 }
 
-
-
-#form-edit{
-  background-color: #ccc;
+.content-edit {
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 10px 30px;
- 
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: none;
+}
+.content-edit.open {
+  display: flex;
+}
+
+#form-edit {
+  background-color: white;
+  width: 50%;
+  padding: 2em;
+}
+
+#title-edit {
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1%;
+}
+
+a {
+  color: white;
 }
