@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital@1&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital@1&display=swap");
 
 * {
   margin: 0;
@@ -9,7 +9,7 @@
 body {
   position: relative;
   background-color: #ffefea;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
 }
 
 .title {
@@ -91,7 +91,8 @@ body {
   right: 7px;
 }
 
-button , input[type="submit"] {
+button,
+input[type="submit"] {
   cursor: pointer;
   padding: 5px 15px;
   background-color: darksalmon;
@@ -108,7 +109,7 @@ button:hover {
   transform: translateY(-1.5px);
 }
 
-.createBtn{
+.createBtn {
   width: 20%;
   padding: 10px;
   border-radius: 10px;
@@ -116,18 +117,12 @@ button:hover {
   border: none;
 }
 
-
-
-
-.createBtnWrap{
+.createBtnWrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
-
-
- 
 
 @keyframes fadeInFromNone {
   0% {
@@ -212,13 +207,10 @@ a {
   color: white;
 }
 
-
-
-input[type="text"]{
+input[type="text"] {
   width: 100%;
   padding: 10px;
-  border :2px solid darksalmon;
+  border: 2px solid darksalmon;
   border-radius: 10px;
   margin-bottom: 5px;
 }
-
