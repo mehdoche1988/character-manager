@@ -31,9 +31,9 @@ async function getCharacters() {
                ${ele.shortDescription}
             </div>
             <div class="btns">
-              <button class="button" id="show">Show</button>
-              <button class="button" id="edit">Edit</></button>
-              <button class="button" id="delete">Delete</button>
+              <button class="button" id="show"><i class="far fa-eye"></i> Show</button>
+              <button class="button" id="edit"><i class="far fa-edit"></i> Edit</></button>
+              <button class="button" id="delete"><i class="fas fa-trash-alt"></i> Delete</button>
             </div>
           </div>`;
     });
