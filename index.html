@@ -14,10 +14,15 @@
   </head>
 
   <body>
+
+  <div class="createBtnWrap">
     <h1 class="title">character-manager</h1>
-    <button class="create"><a href="charchter.html">create elements</a></button>
+    <button class="createBtn"><a href="charchter.html">create elements</a></button>
+  </div>
+   
 
     <div class="container">
+      
       <div class="content"></div>
       <div class="content-show"></div>
       <div class="modalDelete">
@@ -25,7 +30,7 @@
           <i class="fa fa-times" aria-hidden="true"></i>
         </button>
         <p>Are you sure you want to delete this it me ?</p>
-        <button id="btnDelModal">OK</button>
+        <button id="btnConfirmDelete">OK</button>
       </div>
     </div>
 
@@ -43,7 +48,6 @@
           <label>image</label>
           <input type="file" placeholder="image" id="image-edit" />
           <input type="submit" id="submit-edit" />
-          <button><a href="index.html">Return</a></button>
         </form>
       </div>
     </div>

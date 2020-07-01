@@ -1,19 +1,19 @@
-let boxs = document.getElementById("");
 let modal = document.querySelector(".content-show");
 let deletBtns = document.querySelectorAll("#delete");
 let nameEdit = document.querySelector("#name-edit");
 let descEdit = document.querySelector("#desc-edit");
 let shortDescEdit = document.querySelector("#shortDescription-edit");
+let closeBtnEdit = document.querySelector("#close-btn-edit");
+let modalEdit = document.querySelector(".content-edit");
+let modalDelete = document.querySelector(".modalDelete");
+let btnConfirmDelete = document.querySelector("#btnConfirmDelete");
+let btnCloseDelModal = document.querySelector(".closeDeleteModal");
+let formEdit = document.getElementById("form-edit");
+let contentEdit = document.querySelector(".content-edit");
 
-let fetchData = async () =>
-  await (
-    await fetch("https://character-database.becode.xyz/characters")
-  ).json();
-let fetchDataById = async (id) =>
-  await (
-    await fetch("https://character-database.becode.xyz/characters/" + id)
-  ).json();
-
+let fetchData = async () => await ( await fetch("https://character-database.becode.xyz/characters") ).json();
+let fetchDataById = async (id) =>await (await fetch("https://character-database.becode.xyz/characters/" + id)).json();
+  
 async function getCharacters() {
   let outPut = "";
   await fetchData().then((data) => {
@@ -49,7 +49,6 @@ function getInfoCharcters() {
     box.addEventListener("click", async (e) => {
       let id = e.target.parentElement.parentElement.id;
       let character = await fetchDataById(id);
-
       let outPut = "";
       outPut += `
         <div class="box-show">
@@ -64,9 +63,7 @@ function getInfoCharcters() {
       </div>  `;
       modal.innerHTML = outPut;
       modal.classList.add("open");
-      document.getElementById("back").addEventListener("click", () => {
-        modal.classList.remove("open");
-      });
+      closeModal(document.getElementById("back"), modal, "open");
     });
   });
 }
@@ -75,28 +72,23 @@ function deleteElement() {
   let btnDeletes = document.querySelectorAll("#delete");
   btnDeletes.forEach((btn) => {
     btn.addEventListener("click", async (e) => {
-      document.querySelector(".modalDelete").classList.add("open");
-      document
-        .querySelector("#btnDelModal")
-        .addEventListener("click", async () => {
-          document.querySelector(".modalDelete").classList.remove("open");
-          await fetch(
-            "https://character-database.becode.xyz/characters/" +
-              e.target.parentElement.parentElement.id,
-            {
-              method: "DELETE",
-              headers: {
-                "Content-type": "application/json; charset=UTF-8",
-              },
-            }
-          );
+      modalDelete.classList.add("open");
+      btnConfirmDelete.addEventListener("click", async () => {
+        modalDelete.classList.remove("open");
+        await fetch("https://character-database.becode.xyz/characters/"+ e.target.parentElement.parentElement.id,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          }
+        ).then(() => {
           getCharacters();
         });
+      });
     });
   });
-  document.querySelector(".closeDeleteModal").addEventListener("click", () => {
-    document.querySelector(".modalDelete").classList.remove("open");
-  });
+  closeModal(btnCloseDelModal, modalDelete, "open");
 }
 
 function editCharcters() {
@@ -116,16 +108,11 @@ function editCharcters() {
 }
 
 async function editCharctersById(idCahr) {
-  let imgurl;
-  document.getElementById("form-edit").addEventListener("submit", async (e) => {
+  formEdit.addEventListener("submit", async (e) => {
     e.preventDefault();
-    document.querySelector(".content-edit").classList.remove("open");
-    await fetchDataById(idCahr).then((data) => {
-      imgurl = data.image;
-    });
+    contentEdit.classList.remove("open");
     await fetch("https://character-database.becode.xyz/characters/" + idCahr, {
       method: "PUT",
-      image: imgurl,
       body: JSON.stringify({
         name: nameEdit.value,
         description: descEdit.value,
@@ -138,8 +125,8 @@ async function editCharctersById(idCahr) {
       getCharacters();
     });
   });
+  closeModal(closeBtnEdit, modalEdit, "open");
 }
-document.querySelector("#close-btn-edit").addEventListener("click", () => {
-  document.querySelector(".content-edit").classList.remove("open");
-});
+const closeModal = (btn, modal, className) =>
+  btn.addEventListener("click", () => modal.classList.remove(className));
 getCharacters();

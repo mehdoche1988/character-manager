@@ -5,7 +5,6 @@ let form = document.getElementById("form");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-
   fetch("https://character-database.becode.xyz/characters", {
     method: "POST",
     headers: {
