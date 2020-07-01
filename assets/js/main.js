@@ -12,9 +12,9 @@ let formEdit = document.getElementById("form-edit");
 let contentEdit = document.querySelector(".content-edit");
 let fileImgEdit = document.getElementById("image-edit");
 
-let fetchData = async () =>await (await fetch("https://character-database.becode.xyz/characters")).json();
-let fetchDataById = async (id) => await (await fetch("https://character-database.becode.xyz/characters/" + id)  ).json();
-   
+let fetchData = async () => await (await fetch("https://character-database.becode.xyz/characters")).json();
+let fetchDataById = async (id) => await (await fetch("https://character-database.becode.xyz/characters/" + id)).json();
+
 async function getCharacters() {
   let outPut = "";
   await fetchData().then((data) => {
@@ -150,3 +150,4 @@ const toBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
+

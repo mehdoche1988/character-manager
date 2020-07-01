@@ -34,3 +34,8 @@ const toBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
+
+
+  document.getElementById("submit").addEventListener("click", () => {
+    alert("message enregister. Appuiez sur return pour revenir a la page d'accueil");
+  })
