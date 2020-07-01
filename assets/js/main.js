@@ -119,7 +119,7 @@ async function editCharctersById(idCahr) {
     e.preventDefault();
     contentEdit.classList.remove("open");
     let currentChar = await fetchDataById(idCahr);
-    console.log(currentChar);
+    console.log(idCahr);
     await fetch("https://character-database.becode.xyz/characters/" + idCahr, {
       method: "PUT",
       body: JSON.stringify({
@@ -131,8 +131,12 @@ async function editCharctersById(idCahr) {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
-    }).then(() => {
-      getCharacters();
+    }).then( ()=> {
+     document.location.reload();
+      nameEdit.value ="";
+      descEdit.value="";
+      shortDescEdit.value ="";
+      
     });
   });
 
