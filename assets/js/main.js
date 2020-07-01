@@ -15,9 +15,9 @@ let fileImgEdit = document.getElementById("image-edit");
 let fetchData = async () => await (await fetch("https://character-database.becode.xyz/characters")).json();
 let fetchDataById = async (id) => await (await fetch("https://character-database.becode.xyz/characters/" + id)).json();
 
-async function getCharacters() {
+ async function getCharacters() {
   let outPut = "";
-  await fetchData().then((data) => {
+  let data = await fetchData();
     data.forEach((ele) => {
       outPut += `
             <div class="box" id=${ele.id}>
@@ -25,7 +25,7 @@ async function getCharacters() {
               <img src=data:image/JPEG;base64,${ele.image} alt="test image" />
             </div>
             <div class="name">
-              <h6>${ele.name}</h6>
+              <h3>${ele.name}</h3>
             </div>
             <div class="shortDescription">
                ${ele.shortDescription}
@@ -40,8 +40,7 @@ async function getCharacters() {
     document.querySelector(".content").innerHTML = outPut;
     getInfoCharcters();
     deleteElement();
-    editCharcters();
-  });
+    editCharcters() 
 }
 
 function getInfoCharcters() {
@@ -82,10 +81,8 @@ function deleteElement() {
             headers: {
               "Content-type": "application/json; charset=UTF-8",
             },
-          }
-        ).then(() => {
+          })
           getCharacters();
-        });
       });
     });
   });
@@ -103,23 +100,23 @@ function editCharcters() {
       descEdit.value = charachter.description;
       shortDescEdit.value = charachter.shortDescription;
       editCharctersById(idChar);
+     
     });
+ 
   });
 }
-async function editCharctersById(idCahr) {
+ function editCharctersById(idCahr) {
   let imgUrl;
-  fileImgEdit.addEventListener("change", async () => {
+  fileImgEdit.addEventListener("change", () => {
     let file64 = document.querySelector("input[type=file]").files[0];
-    await toBase64(file64).then((value) => {
+     toBase64(file64).then((value) => {
       imgUrl = value.substring(value.indexOf(",") + 1);
     });
   });
-
   formEdit.addEventListener("submit", async (e) => {
     e.preventDefault();
     contentEdit.classList.remove("open");
     let currentChar = await fetchDataById(idCahr);
-    console.log(idCahr);
     await fetch("https://character-database.becode.xyz/characters/" + idCahr, {
       method: "PUT",
       body: JSON.stringify({
@@ -131,22 +128,12 @@ async function editCharctersById(idCahr) {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
-    }).then( ()=> {
-     document.location.reload();
-      nameEdit.value ="";
-      descEdit.value="";
-      shortDescEdit.value ="";
-      
-    });
+    })
+    document.location.reload()
   });
-
   closeModal(closeBtnEdit, modalEdit, "open");
 }
-
-const closeModal = (btn, modal, className) =>
-  btn.addEventListener("click", () => modal.classList.remove(className));
-getCharacters();
-
+const closeModal = (btn, modal, className) =>btn.addEventListener("click", () => modal.classList.remove(className));
 const toBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -154,4 +141,4 @@ const toBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
-
+  getCharacters();
