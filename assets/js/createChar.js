@@ -36,5 +36,5 @@ const toBase64 = (file) =>
   });
 
   document.getElementById("submit").addEventListener("click", () => {
-    alert("message enregister. Appuiez sur return pour revenir a la page d'accueil");
+    alert("Information a bien été enregisté dans l'api. Appuiez sur return pour revenir a la page d'accueil");
   })

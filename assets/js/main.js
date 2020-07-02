@@ -13,9 +13,9 @@ let contentEdit = document.querySelector(".content-edit");
 let fileImgEdit = document.getElementById("image-edit");
 let fetchData = async () => await (await fetch("https://character-database.becode.xyz/characters")).json();
 let fetchDataById = async (id) => await (await fetch("https://character-database.becode.xyz/characters/" + id)).json();
-import {getAllCharachterHtml ,getSingleCharInfo} from "./html.js"
+import {getAllCharachterHtml ,getSingleCharInfo} from "./html.js";
 
- async function getCharacters() {
+async function getCharacters() {
   let outPut = "";
   let data = await fetchData();
     data.forEach((ele) => {
@@ -24,9 +24,10 @@ import {getAllCharachterHtml ,getSingleCharInfo} from "./html.js"
     });
     document.querySelector(".content").innerHTML = outPut;
     getInfoCharcters();
-    deleteElement();
+    deleteCharcters();
     editCharcters() 
-}
+  }
+
 function getInfoCharcters() {
   let boxs = document.querySelectorAll("#show");
   boxs.forEach((box) => {
@@ -46,7 +47,7 @@ function getInfoCharcters() {
     });
   });
 }
-function deleteElement() {
+function deleteCharcters() {
   let btnsDelete = document.querySelectorAll("#delete");
   btnsDelete.forEach((btn) => {
     btn.addEventListener("click",(e) => {
@@ -59,8 +60,10 @@ function deleteElement() {
             headers: {
               "Content-type": "application/json; charset=UTF-8",
             },
+          }).then(()=>{
+            window.location.reload()
           })
-          getCharacters();
+       
       });
     });
   });
@@ -74,18 +77,19 @@ function editCharcters() {
       document.querySelector(".content-edit").classList.add("open");
       idChar = e.target.parentElement.parentElement.id;
       let charachter = await fetchDataById(idChar);
-      nameEdit.value = charachter.name;
-      descEdit.value = charachter.description;
-      shortDescEdit.value = charachter.shortDescription;
+      const {name, description ,shortDescription} = charachter;
+      nameEdit.value = name;
+      descEdit.value = description;
+      shortDescEdit.value = shortDescription;
       editCharctersById(idChar);
     });
   });
 }
- function editCharctersById(idCahr) {
+function editCharctersById(idCahr) {
   let imgUrl;
   fileImgEdit.addEventListener("change", () => {
     let file64 = document.querySelector("input[type=file]").files[0];
-     toBase64(file64).then((value) => {
+    toBase64(file64).then((value) => {
       imgUrl = value.substring(value.indexOf(",") + 1);
     });
   });
@@ -109,7 +113,7 @@ function editCharcters() {
   });
   closeModal(closeBtnEdit, modalEdit, "open");
 }
-const closeModal = (btn, modal, className) =>btn.addEventListener("click", () => modal.classList.remove(className));
+const closeModal = (btn, modal, className) => btn.addEventListener("click", () => modal.classList.remove(className));
 const toBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -117,4 +121,4 @@ const toBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
-  getCharacters();
+  getCharacters()
