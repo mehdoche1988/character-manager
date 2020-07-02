@@ -15,11 +15,11 @@ let fileImgEdit = document.getElementById("image-edit");
 let fetchData = async () => await (await fetch("https://character-database.becode.xyz/characters")).json();
 let fetchDataById = async (id) => await (await fetch("https://character-database.becode.xyz/characters/" + id)).json();
 
- async function getCharacters() {
+async function getCharacters() {
   let outPut = "";
   let data = await fetchData();
-    data.forEach((ele) => {
-      outPut += `
+  data.forEach((ele) => {
+    outPut += `
             <div class="box" id=${ele.id}>
             <div class="image-contener">
               <img src=data:image/JPEG;base64,${ele.image} alt="test image" />
@@ -36,11 +36,11 @@ let fetchDataById = async (id) => await (await fetch("https://character-database
               <button class="button" id="delete"><i class="fas fa-trash-alt"></i> Delete</button>
             </div>
           </div>`;
-    });
-    document.querySelector(".content").innerHTML = outPut;
-    getInfoCharcters();
-    deleteElement();
-    editCharcters() 
+  });
+  document.querySelector(".content").innerHTML = outPut;
+  getInfoCharcters();
+  deleteElement();
+  editCharcters()
 }
 
 function getInfoCharcters() {
@@ -82,7 +82,7 @@ function deleteElement() {
               "Content-type": "application/json; charset=UTF-8",
             },
           })
-          getCharacters();
+        getCharacters();
       });
     });
   });
@@ -100,16 +100,16 @@ function editCharcters() {
       descEdit.value = charachter.description;
       shortDescEdit.value = charachter.shortDescription;
       editCharctersById(idChar);
-     
+
     });
- 
+
   });
 }
- function editCharctersById(idCahr) {
+function editCharctersById(idCahr) {
   let imgUrl;
   fileImgEdit.addEventListener("change", () => {
     let file64 = document.querySelector("input[type=file]").files[0];
-     toBase64(file64).then((value) => {
+    toBase64(file64).then((value) => {
       imgUrl = value.substring(value.indexOf(",") + 1);
     });
   });
@@ -133,7 +133,7 @@ function editCharcters() {
   });
   closeModal(closeBtnEdit, modalEdit, "open");
 }
-const closeModal = (btn, modal, className) =>btn.addEventListener("click", () => modal.classList.remove(className));
+const closeModal = (btn, modal, className) => btn.addEventListener("click", () => modal.classList.remove(className));
 const toBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -141,4 +141,4 @@ const toBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
-  getCharacters();
+getCharacters();
