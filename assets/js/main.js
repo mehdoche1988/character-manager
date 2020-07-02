@@ -11,67 +11,45 @@ let btnCloseDelModal = document.querySelector(".closeDeleteModal");
 let formEdit = document.getElementById("form-edit");
 let contentEdit = document.querySelector(".content-edit");
 let fileImgEdit = document.getElementById("image-edit");
-
 let fetchData = async () => await (await fetch("https://character-database.becode.xyz/characters")).json();
 let fetchDataById = async (id) => await (await fetch("https://character-database.becode.xyz/characters/" + id)).json();
+import {getAllCharachterHtml ,getSingleCharInfo} from "./html.js"
 
  async function getCharacters() {
   let outPut = "";
   let data = await fetchData();
     data.forEach((ele) => {
-      outPut += `
-            <div class="box" id=${ele.id}>
-            <div class="image-contener">
-              <img src=data:image/JPEG;base64,${ele.image} alt="test image" />
-            </div>
-            <div class="name">
-              <h3>${ele.name}</h3>
-            </div>
-            <div class="shortDescription">
-               ${ele.shortDescription}
-            </div>
-            <div class="btns">
-              <button class="button" id="show"><i class="far fa-eye"></i> Show</button>
-              <button class="button" id="edit"><i class="far fa-edit"></i> Edit</></button>
-              <button class="button" id="delete"><i class="fas fa-trash-alt"></i> Delete</button>
-            </div>
-          </div>`;
+      const {id , image , name , shortDescription}  = ele;
+      outPut +=getAllCharachterHtml(id , image,name,shortDescription)
     });
     document.querySelector(".content").innerHTML = outPut;
     getInfoCharcters();
     deleteElement();
     editCharcters() 
 }
-
 function getInfoCharcters() {
   let boxs = document.querySelectorAll("#show");
   boxs.forEach((box) => {
     box.addEventListener("click", async (e) => {
       let id = e.target.parentElement.parentElement.id;
+      try{
       let character = await fetchDataById(id);
       let outPut = "";
-      outPut += `
-        <div class="box-show">
-        <button class="button close" id="back"><i class="fa fa-times" aria-hidden="true"></i></button>
-        <div class="image-contener">
-          <img src="data:image/JPEG;base64,${character.image}" id="imageSherch"/>
-        </div>
-        <div class="name">${character.name}</div>
-        <div class="description">
-          ${character.description}
-        </div>
-      </div>  `;
+      const {image , name , description}  = character;
+      outPut += getSingleCharInfo(image , name,description);
       modal.innerHTML = outPut;
       modal.classList.add("open");
       closeModal(document.getElementById("back"), modal, "open");
+      }catch(Error){
+        console.log(Error)
+      }
     });
   });
 }
-
 function deleteElement() {
-  let btnDeletes = document.querySelectorAll("#delete");
-  btnDeletes.forEach((btn) => {
-    btn.addEventListener("click", async (e) => {
+  let btnsDelete = document.querySelectorAll("#delete");
+  btnsDelete.forEach((btn) => {
+    btn.addEventListener("click",(e) => {
       modalDelete.classList.add("open");
       btnConfirmDelete.addEventListener("click", async () => {
         modalDelete.classList.remove("open");
@@ -100,9 +78,7 @@ function editCharcters() {
       descEdit.value = charachter.description;
       shortDescEdit.value = charachter.shortDescription;
       editCharctersById(idChar);
-     
     });
- 
   });
 }
  function editCharctersById(idCahr) {
