@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/mehdoche1988/character-manager#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "fuctbase64": "^1.4.0",
     "remarkable": "^2.0.1"
